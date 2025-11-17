@@ -1,0 +1,26 @@
+{
+  "name": "inventory-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+
+    "database.hostname": "172.31.100.193",
+    "database.port": "5432",
+    "database.user": "demo",
+    "database.password": "demopw",
+    "database.dbname": "demo",
+
+    "database.server.id": "184054", 
+    "topic.prefix": "demo",
+
+    "slot.name": "debezium_slot",
+    "plugin.name": "pgoutput",
+
+    "database.history.kafka.bootstrap.servers": "kafka:9092",
+    "database.history.kafka.topic": "schema-changes.demo",
+
+    "publication.autocreate.mode": "filtered",
+    "snapshot.mode": "initial",
+    "table.include.list": "public.person"
+  }
+}
+
