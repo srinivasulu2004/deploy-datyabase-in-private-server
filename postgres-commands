@@ -1,0 +1,112 @@
+Great — your PostgreSQL **container is running successfully** on your private EC2.
+Now you can **connect to the DB and check tables**.
+
+I’ll give you the **exact steps** depending on your case.
+
+---
+
+# ✅ **Step 1 — Enter the Postgres container**
+
+Run this inside your **private EC2**:
+
+```bash
+docker exec -it ubuntu-postgres-1 bash
+```
+
+You will now be inside the container:
+
+```
+root@cd484b4d33dc:/#
+```
+
+---
+
+# ✅ **Step 2 — Login to PostgreSQL**
+
+If you used the default `postgres` user:
+
+```bash
+psql -U postgres
+```
+
+If you created a custom DB/user in your docker-compose:
+
+```bash
+psql -U myuser -d mydb
+```
+
+---
+
+# ✅ **Step 3 — List all databases**
+
+Inside `psql`:
+
+```sql
+\l
+```
+
+---
+
+# ✅ **Step 4 — Select your database**
+
+```sql
+\c mydb;
+```
+
+---
+
+# ✅ **Step 5 — List all tables in the DB**
+
+```sql
+\dt;
+```
+
+If you want to list all tables including system tables:
+
+```sql
+\dt *.*;
+```
+
+---
+
+# ✅ **Step 6 — To view table structure (columns)**
+
+```sql
+\d table_name;
+```
+
+---
+
+# ✅ **Step 7 — Query data**
+
+```sql
+SELECT * FROM table_name LIMIT 10;
+```
+
+---
+
+# 🟩 **If you want to run your `init.sql` now**
+
+Copy it to the container:
+
+```bash
+docker cp /home/ubuntu/project/init.sql ubuntu-postgres-1:/init.sql
+```
+
+Run it inside:
+
+```bash
+docker exec -it ubuntu-postgres-1 psql -U postgres -d mydb -f /init.sql
+```
+
+---
+
+# 🟦 **If you want, I can also help with:**
+
+✔ Writing docker-compose for backend to use this DB
+✔ Creating user/password/database inside Postgres
+✔ Making backend connect to this private DB
+✔ Testing DB connection from backend server
+
+Just tell me: **Do you want to test backend → database connection next?**
+>> TO EXIT : \q
